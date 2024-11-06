@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="D:/Learning/SQL/SQL Essential Training2/Ex_Files_SQL_EssT/Exercise Files/WSDA_Music.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="3930"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Album" custom_title="0" dock_id="1" table="4,5:mainAlbum"/><dock_state state="000000ff00000000fd00000001000000020000000000000000fc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000011e00ffffff000000000000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="BasicQuery*">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: This query displays all customer's first names, surnames, and email addresses
+*/
+
+SELECT
+	FirstName,
+	LastName,
+	Email
+FROM
+	Customer</sql><sql name="CustomColName*">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: This query displays all customer's first names, surnames, and email addresses
+*/
+
+SELECT
+	FirstName AS [Customer First Name],
+	LastName AS 'Customer Surname',
+	Email AS EMAIL
+FROM
+	Customer</sql><sql name="LastNameASC*">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: This query displays all customer's first names, surnames, and email addresses
+*/
+
+SELECT
+	FirstName AS [Customer First Name],
+	LastName AS 'Customer Surname',
+	Email AS EMAIL
+FROM
+	Customer
+ORDER BY 
+	LastName ASC</sql><sql name="LastNameDesc*">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: This query displays all customer's first names, surnames, and email addresses
+*/
+
+SELECT
+	FirstName AS [Customer First Name],
+	LastName AS 'Customer Surname',
+	Email AS EMAIL
+FROM
+	Customer
+ORDER BY 
+	LastName DESC</sql><sql name="FirstAscLastDesc*">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: This query displays all customer's first names, surnames, and email addresses
+*/
+
+SELECT
+	FirstName AS [Customer First Name],
+	LastName AS 'Customer Surname',
+	Email AS EMAIL
+FROM
+	Customer
+ORDER BY 
+	FirstName ASC,
+	LastName DESC</sql><sql name="Limit10*">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: This query displays all customer's first names, surnames, and email addresses
+*/
+
+SELECT
+	FirstName AS [Customer First Name],
+	LastName AS 'Customer Surname',
+	Email AS EMAIL
+FROM
+	Customer
+ORDER BY 
+	FirstName ASC,
+	LastName DESC
+LIMIT 10</sql><current_tab id="5"/></tab_sql></sqlb_project>
