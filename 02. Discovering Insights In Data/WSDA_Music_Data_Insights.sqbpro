@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="WSDA_Music_Data_Insights.db" readonly="0" foreign_keys="0" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="3930"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="5" parent="0"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Album" custom_title="0" dock_id="1" table="4,5:mainAlbum"/><dock_state state="000000ff00000000fd0000000100000002000005bb00000398fc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000000005bb0000012900ffffff000002690000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Album" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="56"/><column index="2" value="287"/><column index="3" value="54"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="TwoSongs$0.99">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: Customers who purchased two songs at $0.99 each
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE	
+	total = 1.99
+ORDER BY
+	InvoiceDate</sql><sql name="Between$1.98&amp;$5.00">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: How many invoices exist between $1.98 and $5.00?
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE	
+	total BETWEEN 1.98 AND 5.00
+ORDER BY
+	InvoiceDate</sql><sql name="$1.98Or£3.96">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: How many invoices do we have that are exactly $1.98 or $3.96?
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE	
+	total IN(1.98,3.96)
+ORDER BY
+	InvoiceDate</sql><sql name="Brussels">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: How many invoices were billed to Brussels?
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE	
+	BillingCity = 'Brussels'
+ORDER BY
+	InvoiceDate</sql><sql name="BrusselsOrlandoParis">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: How many invoices were billed to Brussels, Orlando or Paris?
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE	
+	BillingCity IN('Brussels','Orlando','Paris')
+ORDER BY
+	InvoiceDate</sql><sql name="CitiesStartB">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: How many invoices were billed in cities beginning with B?
+*/
+
+-- % is the wildcard character
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE	
+	BillingCity LIKE 'B%'
+ORDER BY
+	InvoiceDate</sql><sql name="CitiesIncludeB">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: How many invoices were billed in cities including the letter B in its name?
+*/
+
+-- % is the wildcard character
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE	
+	BillingCity LIKE '%B%'
+ORDER BY
+	InvoiceDate</sql><sql name="22/05/2010">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: How many invoices were billed on 2010-05-22 00:00:00?
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE	
+	InvoiceDate = '2010-05-22 00:00:00'
+ORDER BY
+	InvoiceDate</sql><sql name="22/05/2010UsingFunction">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: How many invoices were billed on 2010-05-22 00:00:00?
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE	
+	DATE(InvoiceDate) = '2010-05-22'
+ORDER BY
+	InvoiceDate</sql><sql name="After22/05/2010LessThan$3:00">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: How many invoices were billed after 2010-05-22 with a toal of less than $3:00?
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE	
+	DATE(InvoiceDate) &gt;'2010-05-22' AND total &lt;3.00
+ORDER BY
+	InvoiceDate</sql><sql name="CitiesStartWithPOrD">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: Get all invoices whose billing city either starts with a P or starts with a D?
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE	
+	BillingCity LIKE 'P%' OR BillingCity LIKE 'D%'
+ORDER BY
+	InvoiceDate</sql><sql name="CitiesStartWithPOrDMoreThan$1.98">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+Description: Get all invoices greater than $1.98 and whose billing city either starts with a P or starts with a D?
+
+PEMDAS - Parenthesis, Exponents, Multiplication/Division, Addition/Subtraction
+BEMDAS - Brackets, Exponents, Multiplication/Division, Addition/Subtraction
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE
+	total &gt; 1.98 AND (BillingCity LIKE 'P%' OR BillingCity LIKE 'D%')
+ORDER BY
+	InvoiceDate</sql><sql name="PurchaseType">/*
+Created By: Dean Coles
+Create Date: 06/11/2024
+
+Description: WSDA Music Sales Goal:
+They want as many customers a spossible to spend between $7.00 and $15.00
+
+Sales Categories:
+Baseline Purchase - Between $0.99 and $1.99
+Low Purchase - 		Between $2.00 and $6.99
+Target Purchase -	Between $7.00 and $15.00
+Top Performer - 	Above $15.00
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total,
+	CASE
+	WHEN total &lt; 2.00 THEN 'Baseline Purchase'
+	WHEN total BETWEEN 2.00 AND 6.99 THEN 'Low Purchase'
+	WHEN total BETWEEN 7.00 AND 15.00 THEN 'Target Purchase'
+	ELSE 'Top Performer'
+	END AS PurchaseType
+FROM
+	Invoice
+ORDER BY
+	BillingCity</sql><sql name="WSDA_Music_Data_Insights.sql" filename="D:/Learning/SQL/SQL_Essential_Training/02. Discovering Insights In Data/WSDA_Music_Data_Insights.sql">-- Reference to file &quot;D:/Learning/SQL/SQL_Essential_Training/02. Discovering Insights In Data/WSDA_Music_Data_Insights.sql&quot; (not supported by this version) --</sql><current_tab id="13"/></tab_sql></sqlb_project>
